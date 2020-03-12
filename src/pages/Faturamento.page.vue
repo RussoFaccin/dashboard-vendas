@@ -41,17 +41,17 @@
         <div class="appSection section--7d">
           <div class="infoRow">
             <div class="infoBox boxFat">
-              <h1 class="boxHeading">faturamento semana anterior <span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">faturamento semana anterior <span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="true" :value="dadosFull.hab.fat_7d" />
             </div>
           </div>
           <div class="infoRow">
             <div class="infoBox boxTc7d">
-              <h1 class="boxHeading">T.C. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">T.C. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="false" :value="dadosFull.hab.tc_7d" />
             </div>
             <div class="infoBox boxTm7d">
-              <h1 class="boxHeading">T.M. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">T.M. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="true" :value="dadosFull.hab.tm_7d" />
             </div>
           </div>
@@ -97,17 +97,17 @@
         <div class="appSection section--7d">
           <div class="infoRow">
             <div class="infoBox boxFat">
-              <h1 class="boxHeading">faturamento semana anterior <span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">faturamento semana anterior <span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="true" :value="dadosFull.rag.fat_7d" />
             </div>
           </div>
           <div class="infoRow">
             <div class="infoBox boxTc7d">
-              <h1 class="boxHeading">T.C. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">T.C. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="false" :value="dadosFull.rag.tc_7d" />
             </div>
             <div class="infoBox boxTm7d">
-              <h1 class="boxHeading">T.M. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">T.M. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="true" :value="dadosFull.rag.tm_7d" />
             </div>
           </div>
@@ -153,17 +153,17 @@
         <div class="appSection section--7d">
           <div class="infoRow">
             <div class="infoBox boxFat">
-              <h1 class="boxHeading">faturamento semana anterior <span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">faturamento semana anterior <span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="true" :value="dadosFull.rex.fat_7d" />
             </div>
           </div>
           <div class="infoRow">
             <div class="infoBox boxTc7d">
-              <h1 class="boxHeading">T.C. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">T.C. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="false" :value="dadosFull.rex.tc_7d" />
             </div>
             <div class="infoBox boxTm7d">
-              <h1 class="boxHeading">T.M. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - Até às {{hourRound}}h</span></h1>
+              <h1 class="boxHeading">T.M. semana anterior<br><span class="boxHeading__light">- {{ dayName }} {{ pastDayFormated }}/{{ pastMonthFormated }} - mesmo horário</span></h1>
               <Counter :curr-symbol="true" :value="dadosFull.rex.tm_7d" />
             </div>
           </div>
@@ -410,7 +410,8 @@
 
   .boxHeading {
     text-align: center;
-    font-size: 2.5vmin;
+    font-size: 2.35vmin;
+    letter-spacing: -0.05vmin;
   }
 
   .boxHeading__light {
