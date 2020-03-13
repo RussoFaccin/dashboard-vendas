@@ -250,6 +250,9 @@
     },
     methods: {
       async getData() {
+        if (!this.isOnline) {
+          return false;
+        }
         // Loagin Dialog
         this.isLoading = true;
         // Refresh date
@@ -451,5 +454,4 @@
   .boxTc7d {
     margin-right: 2.7vmin;
   }
-
 </style>
