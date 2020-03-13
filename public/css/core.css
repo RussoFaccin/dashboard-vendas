@@ -85,7 +85,6 @@ html, body {
     overflow: hidden;
     font-family: 'Proxima Nova - Bold';
     box-sizing: border-box;
-    text-transform: uppercase;
 }
 
 .appRoot {

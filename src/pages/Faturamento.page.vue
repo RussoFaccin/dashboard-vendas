@@ -171,6 +171,7 @@
       </div>
     </vue-pull-refresh>
     <loading-dialog v-if="isLoading"></loading-dialog>
+    <SnackBar :duration="2.5" v-if="!isOnline" message="Você está offline"></SnackBar>
   </div>
 </template>
 
@@ -183,6 +184,7 @@
   import Counter from '../components/Counter';
   import VuePullRefresh from 'vue-pull-refresh';
   import LoadingDialog from '../components/LoadingDialog.vue';
+  import SnackBar from '../components/SnackBar.vue';
   // Mock Data
   import { data } from "../data/mock";
 
@@ -191,7 +193,8 @@
     components: {
       Counter,
       'vue-pull-refresh': VuePullRefresh,
-      LoadingDialog
+      LoadingDialog,
+      SnackBar
     },
     data() {
       return {
@@ -210,6 +213,9 @@
       };
     },
     computed: {
+      isOnline() {
+        return navigator.onLine;
+      },
       dayName() {
 
         return DateUtils.getDayName(this.today.getDay());
@@ -410,6 +416,7 @@
 
   .boxHeading {
     text-align: center;
+    text-transform: uppercase;
     font-size: 2.35vmin;
     letter-spacing: -0.05vmin;
   }
