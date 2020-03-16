@@ -156,3 +156,51 @@ html, body {
     --headingColor: #ffefc6;
     --outlineColor: #c06708;
   }
+
+  /*
+================================================================================
+Animations
+================================================================================
+*/
+
+.animShake {
+    animation: shake 0.5s ease-in;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0%);
+    }
+
+    12.5% {
+        transform: translateX(10%);
+    }
+
+    25% {
+        transform: translateX(-10%);
+    }
+
+    37.5% {
+        transform: translateX(10%);
+    }
+
+    50% {
+        transform: translateX(-10%);
+    }
+
+    62.5% {
+        transform: translateX(10%);
+    }
+
+    75% {
+        transform: translateX(-10%);
+    }
+
+    87.5% {
+        transform: translateX(10%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}

@@ -2,7 +2,7 @@
   <div class="appRoot loginPage">
     <img class="seloHabibs" src="img/seloHabibs.svg" alt="">
     <h2 class="appTitle">Dashboard faturamento</h2>
-    <form action="" class="loginForm">
+    <form action="" class="loginForm" ref="loginForm">
       <input class="formInput" type="text" name="fldLogin" placeholder="Login" v-model="loginForm.userName">
       <input class="formInput" type="password" name="fldSenha" placeholder="Senha" v-model="loginForm.password">
       <button class="btnSubmit" type="submit" name="btnSubmit" v-on:click="authUser($event)">Entrar</button>
@@ -24,11 +24,11 @@ export default {
     };
   },
   computed: {},
-  created() {
-    // console.log('Router', this.$router);
-  },
+  created() {},
   methods: {
     authUser(evt) {
+      // Remove previous feedback class
+      this.$refs.loginForm.classList.remove('animShake');
       evt.preventDefault();
       
       const myHeaders = new Headers();
@@ -48,11 +48,15 @@ export default {
       ).then((response) => {
         response.json()
         .then((result) => {
-          if (result.success) {
+          if (result.success && result.data !=='Usuário ou senha inválidas') {
             localStorage.setItem('credentials', JSON.stringify(this.loginForm));
             localStorage.setItem('apiKey', result.data.accessToken);
             
             this.$router.push('faturamento');
+          } else {
+            // Login error feedback
+            this.$refs.loginForm.classList.add('animShake');
+
           }
         })
       });
