@@ -209,7 +209,7 @@
         accessToken: null,
         today: new Date(),
         pastWeek: null,
-        dadosFull : data
+        dadosFull : null
       };
     },
     computed: {
@@ -237,6 +237,9 @@
       }
     },
     created() {
+      // Offline data
+      const prevData = localStorage.getItem('prevData') ? JSON.parse(localStorage.getItem('prevData')) : data
+      this.dadosFull = prevData;
       // Check credentials
       const isLogged = localStorage.getItem('credentials') ? true : false;
       
@@ -336,6 +339,8 @@
               .then((data) => {
                 this.isLoading = false;
                 this.dadosFull.rex = data;
+                // Offline data
+                localStorage.setItem('prevData', JSON.stringify(this.dadosFull))
               });
             }).catch((err) => {
               console.err(err);
