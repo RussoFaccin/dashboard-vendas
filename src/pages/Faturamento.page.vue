@@ -171,6 +171,7 @@
       </div>
     </vue-pull-refresh>
     <loading-dialog v-if="isLoading"></loading-dialog>
+    <SnackBar :duration="2.5" message="Você está offline" ref="snackBar"></SnackBar>
   </div>
 </template>
 
@@ -183,6 +184,7 @@
   import Counter from '../components/Counter';
   import VuePullRefresh from 'vue-pull-refresh';
   import LoadingDialog from '../components/LoadingDialog.vue';
+  import SnackBar from '../components/SnackBar.vue';
   // Mock Data
   import { data } from "../data/mock";
 
@@ -191,7 +193,8 @@
     components: {
       Counter,
       'vue-pull-refresh': VuePullRefresh,
-      LoadingDialog
+      LoadingDialog,
+      SnackBar
     },
     data() {
       return {
@@ -210,6 +213,9 @@
       };
     },
     computed: {
+      isOnline() {
+        return navigator.onLine;
+      },
       dayName() {
 
         return DateUtils.getDayName(this.today.getDay());
@@ -242,8 +248,18 @@
       this.pastWeek = new Date(this.today.getTime() - WEEK_OFFSET);
       this.getData();
     },
+    mounted() {
+      // Check online
+      this.checkOnline();
+      // on/off line listener
+      window.addEventListener('offline', this.checkOnline);
+    },
     methods: {
       async getData() {
+        if (!this.checkOnline()) {
+          this.$refs.snackBar.show;
+          return false;
+        }
         // Loagin Dialog
         this.isLoading = true;
         // Refresh date
@@ -340,6 +356,13 @@
         const numTmp = Number(numEntry)
         .toLocaleString('pt-BR', isCurrency ? {currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2} : '')
         return String(numTmp);
+      },
+      checkOnline() {
+        if (!navigator.onLine) {
+          this.$refs.snackBar.show();
+        }
+
+        return navigator.onLine;
       }
     }
   };
@@ -410,6 +433,7 @@
 
   .boxHeading {
     text-align: center;
+    text-transform: uppercase;
     font-size: 2.35vmin;
     letter-spacing: -0.05vmin;
   }
@@ -444,5 +468,4 @@
   .boxTc7d {
     margin-right: 2.7vmin;
   }
-
 </style>
