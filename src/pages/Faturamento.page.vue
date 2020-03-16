@@ -171,7 +171,7 @@
       </div>
     </vue-pull-refresh>
     <loading-dialog v-if="isLoading"></loading-dialog>
-    <SnackBar :duration="2.5" v-if="!isOnline" message="Você está offline"></SnackBar>
+    <SnackBar :duration="2.5" message="Você está offline" ref="snackBar"></SnackBar>
   </div>
 </template>
 
@@ -248,9 +248,16 @@
       this.pastWeek = new Date(this.today.getTime() - WEEK_OFFSET);
       this.getData();
     },
+    mounted() {
+      // Check online
+      this.checkOnline();
+      // on/off line listener
+      window.addEventListener('offline', this.checkOnline);
+    },
     methods: {
       async getData() {
-        if (!this.isOnline) {
+        if (!this.checkOnline()) {
+          this.$refs.snackBar.show;
           return false;
         }
         // Loagin Dialog
@@ -349,6 +356,13 @@
         const numTmp = Number(numEntry)
         .toLocaleString('pt-BR', isCurrency ? {currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2} : '')
         return String(numTmp);
+      },
+      checkOnline() {
+        if (!navigator.onLine) {
+          this.$refs.snackBar.show();
+        }
+
+        return navigator.onLine;
       }
     }
   };
