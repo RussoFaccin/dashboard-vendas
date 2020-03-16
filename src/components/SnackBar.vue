@@ -21,7 +21,17 @@ export default {
 ,
 mounted() {
     // Test
-    this.$el.setAttribute('style', `--dismissDelay: ${this.duration}s`);
+    // this.$el.setAttribute('style', `--dismissDelay: ${this.duration}s`);
+},
+methods: {
+    show() {
+        this.$el.classList.add('animShow');
+        // dismiss
+        setTimeout(this.dismiss, (this.duration * 1000));
+    },
+    dismiss() {
+        this.$el.classList.remove('animShow');
+    }
 }
 }
 </script>
@@ -40,9 +50,16 @@ mounted() {
         margin: 10px auto;
         font-family: sans-serif;
         font-weight: lighter;
-        animation: show 0.5s ease-in forwards,
-                   dismiss 0.5s ease-in var(--dismissDelay, 3s) forwards;
+        transition: all 0.5s ease-in;
+        opacity: 0;
         /* animation: dismiss 1s ease-in 1s forwards; */
+    }
+
+    .animShow {
+        opacity: 1;
+        /* animation: show 0.5s ease-in forwards,
+                   dismiss 0.5s ease-in var(--dismissDelay, 3s) forwards; */
+            animation: show 0.5s ease-in forwards;
     }
 
     @keyframes show {
