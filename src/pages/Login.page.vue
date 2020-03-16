@@ -18,8 +18,8 @@ export default {
   data() {
     return {
       loginForm: {
-        userName: 'dashboard',
-        password: '#f8750e9a5a22H'
+        userName: '',
+        password: ''
       }
     };
   },
