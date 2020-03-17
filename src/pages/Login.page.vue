@@ -3,8 +3,8 @@
     <img class="seloHabibs" src="img/seloHabibs.svg" alt="">
     <h2 class="appTitle">Dashboard faturamento</h2>
     <form action="" class="loginForm" ref="loginForm">
-      <input class="formInput" type="text" name="fldLogin" placeholder="Login" v-model="loginForm.userName">
-      <input class="formInput" type="password" name="fldSenha" placeholder="Senha" v-model="loginForm.password">
+      <input class="formInput" type="text" name="fldLogin" autocomplete="username" placeholder="Login" v-model="loginForm.userName">
+      <input class="formInput" type="password" name="fldSenha" autocomplete="current-password" placeholder="Senha" v-model="loginForm.password">
       <button class="btnSubmit" type="submit" name="btnSubmit" v-on:click="authUser($event)">Entrar</button>
     </form>
   </div>
