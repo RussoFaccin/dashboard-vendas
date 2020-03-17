@@ -1,7 +1,6 @@
 module.exports = {
     publicPath: './',
     lintOnSave: false,
-    productionSourceMap: false,
     pwa: {
         themeColor: '#eb1e23',
         msTileColor: '#000000',
