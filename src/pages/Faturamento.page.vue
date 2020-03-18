@@ -275,11 +275,11 @@
         const credentials = localStorage.getItem('credentials');
 
         const requestOptions = {
-          method: "POST",
-          mode: "cors",
+          method: 'POST',
+          mode: 'cors',
           headers: myHeaders,
           body: credentials,
-          redirect: "follow"
+          redirect: 'follow'
         };
 
         const promise = fetch(
@@ -340,13 +340,14 @@
               .then((data) => {
                 this.isLoading = false;
                 this.dadosFull.rex = data;
-                // Offline data
-                localStorage.setItem('prevData', JSON.stringify(this.dadosFull))
               });
             }).catch((err) => {
               console.error(err);
               this.isLoading = false
             });
+
+            // Offline data
+                localStorage.setItem('prevData', JSON.stringify(this.dadosFull));
           })
         });
 
