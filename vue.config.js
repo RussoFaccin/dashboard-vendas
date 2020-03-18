@@ -10,7 +10,7 @@ module.exports = {
         manifestOptions: {
             name: 'Dashboard Faturamento',
             short_name: 'Dashboard',
-            start_url: './#/faturamento',
+            start_url: '.',
             display: 'standalone',
             orientation: 'portrait'
         }
