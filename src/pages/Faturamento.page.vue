@@ -312,7 +312,7 @@
                 this.dadosFull.hab = data;
               });
             }).catch((err) => {
-              console.err(err);
+              console.error(err);
               this.isLoading = false
             });
             
@@ -326,7 +326,7 @@
                 this.dadosFull.rag = data;
               });
             }).catch((err) => {
-              console.err(err);
+              console.error(err);
               this.isLoading = false
             });
 
@@ -343,7 +343,7 @@
                 localStorage.setItem('prevData', JSON.stringify(this.dadosFull))
               });
             }).catch((err) => {
-              console.err(err);
+              console.error(err);
               this.isLoading = false
             });
           })
