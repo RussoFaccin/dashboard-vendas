@@ -298,6 +298,7 @@
 
             const dataOptions = {
               method: "GET",
+              mode: 'cors',
               headers: dataHeaders,
               redirect: "follow"
             };
