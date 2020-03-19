@@ -405,11 +405,16 @@ export default {
     }
   },
   created() {
+    this.pastWeek = new Date(this.today.getTime() - WEEK_OFFSET);
     // Offline data
     const prevData = localStorage.getItem("prevData")
       ? JSON.parse(localStorage.getItem("prevData"))
       : data;
     this.dadosFull = prevData;
+    // on/off line listener
+    window.addEventListener("offline", this.checkOnline);
+  },
+  mounted() {
     // Check credentials
     const isLogged = localStorage.getItem("credentials") ? true : false;
 
@@ -417,15 +422,9 @@ export default {
       this.$router.push("login");
       return false;
     }
-
-    this.pastWeek = new Date(this.today.getTime() - WEEK_OFFSET);
     this.getData();
-  },
-  mounted() {
     // Check online
     this.checkOnline();
-    // on/off line listener
-    window.addEventListener("offline", this.checkOnline);
   },
   methods: {
     async getData() {
@@ -512,11 +511,12 @@ export default {
         })
       ];
 
-      // Loading dialog
+      // All settled
 
       Promise.allSettled(requestPromises)
       .then(() => {
         this.isLoading = false;
+        localStorage.setItem('prevData', JSON.stringify(this.dadosFull));
       });
 
     },
