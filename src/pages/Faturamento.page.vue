@@ -276,7 +276,7 @@
 
         const requestOptions = {
           method: 'POST',
-          mode: 'cors',
+          mode: 'no-cors',
           headers: myHeaders,
           body: credentials,
           redirect: 'follow'
@@ -298,6 +298,7 @@
 
             const dataOptions = {
               method: "GET",
+              mode: 'no-cors',
               headers: dataHeaders,
               redirect: "follow"
             };
