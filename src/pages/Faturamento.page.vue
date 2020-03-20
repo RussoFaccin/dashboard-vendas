@@ -438,29 +438,12 @@ export default {
       // Refresh date
       this.today = new Date();
 
-      const credentials = localStorage.getItem("credentials");
-
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: credentials,
-        redirect: "follow"
-      };
-
-      // Get token
-
-      await fetch(
-        "https://apivendas.alsaraiva.com.br/api/v1/login",
-        requestOptions
-      )
-      .then((response) => response.json())
-      .then((result) => {
-        this.accessToken = result.data.accessToken;
-      })
-      .catch(error => console.error("error", error));
+      // Check token expiration
+      if (this.isTokenExpired()) {
+        this.accessToken = await this.getToken();
+      } else {
+        this.accessToken = localStorage.getItem('apiKey');
+      }
 
       const dataHeaders = new Headers();
       dataHeaders.append("Content-Type", "application/json");
@@ -539,6 +522,36 @@ export default {
       }
 
       return navigator.onLine;
+    },
+    getToken() {
+      return new Promise((resolve, reject) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: localStorage.getItem("credentials"),
+          redirect: "follow"
+        };
+
+        // Get token
+        fetch(
+          "https://apivendas.alsaraiva.com.br/api/v1/login",
+          requestOptions
+        )
+        .then((response) => response.json())
+        .then((result) => {
+          localStorage.setItem('expiresIn', Date.now() + (Number(result.data.expiresIn) * 1000));
+          resolve(result.data.accessToken);
+        })
+        .catch(error => reject(error));
+      });
+    },
+    isTokenExpired() {
+      const expiresIn = Number(localStorage.getItem('expiresIn'));
+      const now = Date.now();
+      return now > expiresIn;
     }
   }
 };
