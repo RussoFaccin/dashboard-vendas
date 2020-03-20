@@ -46,6 +46,11 @@ export default {
         "https://apivendas.alsaraiva.com.br/api/v1/login",
         requestOptions
       ).then((response) => {
+        if (!response.ok) {
+          console.warn('Usuário ou senha inválidos');
+          this.$refs.loginForm.classList.add('animShake');
+          return false;
+        }
         response.json()
         .then((result) => {
           if (result.success && result.data !=='Usuário ou senha inválidas') {
