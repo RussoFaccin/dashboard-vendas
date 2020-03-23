@@ -55,7 +55,7 @@ export default {
         .then((result) => {
           if (result.success && result.data !=='Usuário ou senha inválidas') {
             localStorage.setItem('credentials', JSON.stringify(this.loginForm));
-            localStorage.setItem('expiresIn', Date.now() + 1000);
+            localStorage.setItem('expiresIn', Date.now() + (Number(result.data.expiresIn) * 1000));
             localStorage.setItem('apiKey', result.data.accessToken);
             
             this.$router.push('faturamento');
