@@ -461,7 +461,9 @@ export default {
         .then((response) => {
           response.json()
           .then((data) => {
-            this.dadosFull.hab = data;
+            if (data.fat_now) {
+              this.dadosFull.hab = data;
+            }
           })
         }),
         // RAGAZZO
@@ -475,7 +477,9 @@ export default {
         .then((response) => {
           response.json()
           .then((data) => {
-            this.dadosFull.rag = data;
+            if (data.fat_now) {
+              this.dadosFull.rag = data;
+            }
           })
         }),
         // REX
@@ -489,7 +493,9 @@ export default {
         .then((response) => {
           response.json()
           .then((data) => {
-            this.dadosFull.rex = data;
+            if (data.fat_now) {
+              this.dadosFull.rex = data;
+            }
           })
         })
       ];
