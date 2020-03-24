@@ -531,6 +531,7 @@ export default {
     },
     getToken() {
       return new Promise((resolve, reject) => {
+        const currDate = Date.now();
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -548,7 +549,8 @@ export default {
         )
         .then((response) => response.json())
         .then((result) => {
-          localStorage.setItem('expiresIn', Date.now() + (Number(result.data.expiresIn) * 1000));
+          localStorage.setItem('expiresIn', currDate + (Number(result.data.expiresIn) * 1000));
+          localStorage.setItem('apiKey', JSON.stringify(result.data.accessToken));
           resolve(result.data.accessToken);
         })
         .catch(error => reject(error));
