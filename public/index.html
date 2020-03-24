@@ -7,6 +7,121 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>Dashboard</title>
     <link rel="stylesheet" href="./css/core.css">
+    <style>
+      /*
+================================================================================
+Fontes
+================================================================================
+*/
+
+@font-face {
+    font-family: 'Proxima Nova - Thin';
+    src: url('../font/proximanova-thin.woff2') format('woff2'),
+         url('../font/proximanova-thin.woff') format('woff');
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: 'Proxima Nova - Light';
+    src: url('../font/proximanova-light.woff2') format('woff2'),
+         url('../font/proximanova-light.woff') format('woff');
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: 'Proxima Nova - Regular';
+    src: url('../font/proximanova-regular.woff2') format('woff2'),
+         url('../font/proximanova-regular.woff') format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Proxima Nova - Bold';
+    src: url('../font/proximanova-bold.woff2') format('woff2'),
+         url('../font/proximanova-bold.woff') format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Proxima Nova Condensed - Bold';
+    src: url('../font/proximanova-cond-bold.woff2') format('woff2'),
+         url('../font/proximanova-cond-bold.woff') format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Proxima Nova - Black';
+    src: url('../font/proximanova-black.woff2') format('woff2'),
+         url('../font/proximanova-black.woff') format('woff');
+    font-weight: bold;
+}
+/*
+================================================================================
+    Theme Color
+================================================================================
+*/
+
+:root {
+    --logoImage: url('../img/logoRede.svg');
+    --mainColor: #eb1e23;
+    --accentColor: #d00921;
+    --textColor: #FFF;
+    --headingColor: #ffcd05;
+    --outlineColor: #a51008;
+}
+
+/*
+================================================================================
+    Core
+================================================================================
+*/
+
+* {
+    position: relative;
+    box-sizing: border-box;
+}
+
+h1,
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Proxima Nova - Bold';
+    box-sizing: border-box;
+}
+
+.appRoot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--mainColor);
+    /* background-image: url('../img/trash.png'); */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.boxLogo {
+    position: absolute;
+    width: 12.35vmin;
+    height: 6.4vmin;
+    top: 3.2vmin;
+    right: 3.2vmin;
+    background-image: var(--logoImage);
+    background-position: top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+    </style>
   </head>
   <body>
     <noscript>

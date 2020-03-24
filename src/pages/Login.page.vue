@@ -97,6 +97,7 @@ export default {
     color: #EB1E23;
     font-size: 7.15vw;
     letter-spacing: 1.25vw;
+    text-transform: uppercase;
   }
 
   .loginForm {
