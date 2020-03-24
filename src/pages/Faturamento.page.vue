@@ -425,6 +425,8 @@ export default {
     this.getData();
     // Check online
     this.checkOnline();
+  },updated() {
+    localStorage.setItem('prevData', JSON.stringify(this.dadosFull));
   },
   methods: {
     async getData() {
@@ -440,6 +442,7 @@ export default {
 
       // Check token expiration
       if (this.isTokenExpired()) {
+        console.log('TOKEN expired');
         this.accessToken = await this.getToken();
       } else {
         this.accessToken = localStorage.getItem('apiKey');
@@ -457,15 +460,7 @@ export default {
             headers: dataHeaders,
             redirect: 'follow'
           }
-        )
-        .then((response) => {
-          response.json()
-          .then((data) => {
-            if (data.fat_now) {
-              this.dadosFull.hab = data;
-            }
-          })
-        }),
+        ),
         // RAGAZZO
         fetch('https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=rag',
           {
@@ -473,15 +468,7 @@ export default {
             headers: dataHeaders,
             redirect: 'follow'
           }
-        )
-        .then((response) => {
-          response.json()
-          .then((data) => {
-            if (data.fat_now) {
-              this.dadosFull.rag = data;
-            }
-          })
-        }),
+        ),
         // REX
         fetch('https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=rex',
           {
@@ -490,22 +477,24 @@ export default {
             redirect: 'follow'
           }
         )
-        .then((response) => {
-          response.json()
-          .then((data) => {
-            if (data.fat_now) {
-              this.dadosFull.rex = data;
-            }
-          })
-        })
       ];
 
       // All settled
 
       Promise.allSettled(requestPromises)
-      .then(() => {
+      .then((response) => {
         this.isLoading = false;
-        localStorage.setItem('prevData', JSON.stringify(this.dadosFull));
+        
+        response.forEach(async (result) => {
+          const url = new URL(result.value.url);
+          const params = new URLSearchParams(url.search);
+          const rede = params.get('rede');
+
+          if (result.status === 'fulfilled') {
+            const data = await result.value.json();
+            this.dadosFull[rede] = data;
+          }
+        });
       });
 
     },
@@ -550,7 +539,7 @@ export default {
         .then((response) => response.json())
         .then((result) => {
           localStorage.setItem('expiresIn', currDate + (Number(result.data.expiresIn) * 1000));
-          localStorage.setItem('apiKey', JSON.stringify(result.data.accessToken));
+          localStorage.setItem('apiKey', result.data.accessToken);
           resolve(result.data.accessToken);
         })
         .catch(error => reject(error));
