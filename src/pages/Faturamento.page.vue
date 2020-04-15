@@ -349,6 +349,7 @@
 const WEEK_OFFSET = 604800000;
 // Utils
 import DateUtils from "../utils/DateUtils.js";
+import { allSettled } from "../utils/allSettled.js";
 // Components
 import Counter from "../components/Counter";
 import VuePullRefresh from "vue-pull-refresh";
