@@ -455,7 +455,9 @@ export default {
 
       const requestPromises = [
         // HABIB'S
-        fetch('https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=hab',
+        fetch(
+          // 'https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=hab',
+          'http://rodrigorusso.com.br/api/?endpoint=faturamento&rede=hab',
           {
             method: 'GET',
             headers: dataHeaders,
@@ -463,7 +465,9 @@ export default {
           }
         ),
         // RAGAZZO
-        fetch('https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=rag',
+        fetch(
+          // 'https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=rag',
+          'http://rodrigorusso.com.br/api/?endpoint=faturamento&rede=rag',
           {
             method: 'GET',
             headers: dataHeaders,
@@ -471,7 +475,9 @@ export default {
           }
         ),
         // REX
-        fetch('https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=rex',
+        fetch(
+          // 'https://apivendas.alsaraiva.com.br/api/v1/TelaEsfirrometro?rede=rex',
+          'http://rodrigorusso.com.br/api/?endpoint=faturamento&rede=rex',
           {
             method: 'GET',
             headers: dataHeaders,
